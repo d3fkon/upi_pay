@@ -75,7 +75,7 @@ class UpiPayPlugin internal constructor(registrar: Registrar, channel: MethodCha
       }
       uriStr += "&mode=00" // &orgid=000000"
       val uri = Uri.parse(uriStr)
-      // Log.d("upi_pay", "initiateTransaction URI: " + uri.toString())
+      Log.d("upi_pay", "initiateTransaction URI: " + uri.toString())
 
       val intent = Intent(Intent.ACTION_VIEW, uri)
       intent.setPackage(app)
