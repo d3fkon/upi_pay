@@ -11,10 +11,11 @@ class TransactionDetails {
   final String payeeName;
   final String transactionRef;
   final String currency;
-  final Decimal amount;
+  final Decimal? amount;
   final String? url;
   final String merchantCode;
   final String? transactionNote;
+  final String? sign;
 
   TransactionDetails({
     required this.upiApplication,
@@ -26,6 +27,7 @@ class TransactionDetails {
     this.url,
     this.merchantCode: '',
     this.transactionNote: 'UPI Transaction',
+    this.sign,
   }) : amount = Decimal.parse(amount) {
     if (!_checkIfUpiAddressIsValid(payeeAddress)) {
       throw InvalidUpiAddressException();
@@ -56,6 +58,7 @@ class TransactionDetails {
       'url': url,
       'mc': merchantCode,
       'tn': transactionNote,
+      'sign': sign,
     };
   }
 
@@ -64,8 +67,11 @@ class TransactionDetails {
         '&pn=${Uri.encodeComponent(payeeName)}'
         '&tr=$transactionRef'
         '&tn=${Uri.encodeComponent(transactionNote!)}'
-        '&am=${amount.toString()}'
+        // '&am=${amount.toString()}'
         '&cu=$currency';
+    if (sign != null && sign!.isNotEmpty) {
+      sign += '&url=${sign}';
+    }
     if (url != null && url!.isNotEmpty) {
       uri += '&url=${Uri.encodeComponent(url!)}';
     }
