@@ -28,23 +28,11 @@ class TransactionDetails {
     this.merchantCode: '',
     this.transactionNote: 'UPI Transaction',
     this.sign,
-  }) : amount = Decimal.parse(amount) {
+  }) {
     if (!_checkIfUpiAddressIsValid(payeeAddress)) {
       throw InvalidUpiAddressException();
     }
-    final Decimal am = Decimal.parse(amount);
-    if (am.scale > 2) {
-      throw InvalidAmountException(
-          'Amount must not have more than 2 digits after decimal point');
-    }
-    if (am <= Decimal.zero) {
-      throw InvalidAmountException('Amount must be greater than 1');
-    }
-    if (am > Decimal.fromInt(_maxAmount)) {
-      throw InvalidAmountException(
-          'Amount must be less then 1,00,000 since that is the upper limit '
-          'per UPI transaction');
-    }
+ 
   }
 
   Map<String, dynamic> toJson() {
