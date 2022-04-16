@@ -11,7 +11,7 @@ class TransactionDetails {
   final String payeeName;
   final String transactionRef;
   final String currency;
-  final Decimal? amount;
+  Decimal? amount;
   final String? url;
   final String merchantCode;
   final String? transactionNote;
