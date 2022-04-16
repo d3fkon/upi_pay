@@ -32,7 +32,6 @@ class TransactionDetails {
     if (!_checkIfUpiAddressIsValid(payeeAddress)) {
       throw InvalidUpiAddressException();
     }
- 
   }
 
   Map<String, dynamic> toJson() {
@@ -58,7 +57,7 @@ class TransactionDetails {
         // '&am=${amount.toString()}'
         '&cu=$currency';
     if (sign != null && sign!.isNotEmpty) {
-      uri += '&url=${sign}';
+      uri += '&sign=${sign}';
     }
     if (url != null && url!.isNotEmpty) {
       uri += '&url=${Uri.encodeComponent(url!)}';

@@ -46,6 +46,7 @@ class UpiPayPlugin internal constructor(registrar: Registrar, channel: MethodCha
     val am: String? = call.argument("am")
     val cu: String? = call.argument("cu")
     val url: String? = call.argument("url")
+    val sign: String? = call.argument("sign")
 
     try {
       /*
@@ -59,6 +60,10 @@ class UpiPayPlugin internal constructor(registrar: Registrar, channel: MethodCha
               "&tr=" + Uri.encode(tr) +
               "&am=" + Uri.encode(am) +
               "&cu=" + Uri.encode(cu)
+
+      if(sign != null) {
+        uriStr += ("&sign=" + sign)
+      }
       if(url != null) {
         uriStr += ("&url=" + Uri.encode(url))
       }
