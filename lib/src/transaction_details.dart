@@ -70,7 +70,7 @@ class TransactionDetails {
         // '&am=${amount.toString()}'
         '&cu=$currency';
     if (sign != null && sign!.isNotEmpty) {
-      sign += '&url=${sign}';
+      uri += '&url=${sign}';
     }
     if (url != null && url!.isNotEmpty) {
       uri += '&url=${Uri.encodeComponent(url!)}';
